@@ -1,0 +1,14 @@
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+dependencies {
+  implementation 'com.urbanairship.android:gimbal-adapter:7.5.0'
+  // Google Play Services
+  implementation "com.google.android.gms:play-services-location:20.0.0"
+  implementation 'com.gimbal.android.v4:airship-adapter:1.0.0'
+}

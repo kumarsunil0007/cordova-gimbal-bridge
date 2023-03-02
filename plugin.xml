@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="urbanairship-gimbal-bridge-cordova"
+        version="3.1.2"
+        xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <name>Urban Airship Gimbal Plugin</name>
+    <description>Urban Airship Gimbal plugin for Cordova</description>
+    <license>Apache 2.0</license>
+    <keywords>gimbal,cordova,urbanairship</keywords>
+    <repo>https://github.com/urbanairship/cordova-gimbal-bridge</repo>
+
+    <engines>
+        <engine name="cordova" version=">=9.0.0"/>
+        <engine name="cordova-ios" version=">=5.0.1"/>
+        <engine name="cordova-plugman" version=">=4.2.0"/>
+    </engines>
+
+    <dependency id="urbanairship-cordova" version=">=6.2.0"/>
+
+    <js-module name="UrbanAirship" src="www/UAGimbal.js">
+        <clobbers target="UAGimbal"/>
+    </js-module>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file parent="/widget" target="config.xml">
+            <feature name="GimbalPlugin">
+                <param name="ios-package" value="GimbalPlugin"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
+
+        <!-- Plugin -->
+        <header-file src="src/ios/GimbalPlugin.h"/>
+        <source-file src="src/ios/GimbalPlugin.m"/>
+
+        <!-- Gimbal Adapter -->
+        <header-file src="src/ios/GimbalAdapter.h"/>
+        <source-file src="src/ios/GimbalAdapter.m"/>
+
+        <!-- Gimbal library -->
+        <podspec>
+            <config>
+                <source url="https://github.com/CocoaPods/Specs.git"/>
+            </config>
+            <pods use-frameworks="true">
+                <pod name="AirshipGimbalAdapter" spec="4.1.2" />
+            </pods>
+        </podspec>
+    </platform>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file parent="/widget" target="res/xml/config.xml">
+            <feature name="GimbalPlugin">
+                <param name="android-package" value="com.urbanairship.cordova.gimbal.GimbalPlugin"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/GimbalPlugin.java" target-dir="src/com/urbanairship/cordova/gimbal"/>
+        <source-file src="src/android/GimbalPluginConfig.java" target-dir="src/com/urbanairship/cordova/gimbal"/>
+
+        <framework custom="true" src="src/android/plugin.gradle" type="gradleReference"/>
+    </platform>
+</plugin>
