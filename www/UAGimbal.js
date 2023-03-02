@@ -42,11 +42,11 @@ module.exports = {
 	stop:function(success, failure){
 		callNative(success, failure, "stop");
 	},
-  startCustomEvent:function(args,success, failure){
+	startCustomEvent:function(args,success, failure){
 		callNative(success, failure, "startCustom", [args]);
 	},
 	stopCustomEvent:function(args,success, failure){
 		callNative(success, failure, "stopCustom", [args]);
 	}
-
 }
+
